@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Product Page</title>
+</head>
+<body>
+
+  <h2>Wireless Headphones</h2>
+  <img src="https://via.placeholder.com/200" width="200">
+  <p>High-quality wireless headphones with noise cancellation.</p>
+  <p>Availability: In Stock</p>
+
+  Quantity: <input type="number" id="qty" value="1" min="1"><br><br>
+  Price: $<span id="price">100</span><br><br>
+  <button onclick="addToCart()">Add to Cart</button>
+
+  <h3>Customer Reviews</h3>
+  ★★★★☆ <br>
+  "Great sound!" <br><br>
+
+  <textarea id="reviewText" placeholder="Write review..."></textarea><br>
+  <button onclick="submitReview()">Submit Review</button>
+  <div id="reviews"></div>
+
+  <script>
+    let basePrice = 100;
+
+    // Change price when quantity changes
+    document.getElementById("qty").oninput = function() {
+      let q = this.value;
+      let discount = q >= 5 ? 0.9 : 1;   // 10% off for 5 or more
+      document.getElementById("price").innerText = basePrice * q * discount;
+    }
+
+    function addToCart() {
+      alert("Added to cart!");
+    }
+
+    function submitReview() {
+      let text = document.getElementById("reviewText").value;
+      if (text !== "") {
+        document.getElementById("reviews").innerHTML += "★ " + text + "<br>";
+        document.getElementById("reviewText").value = "";
+      }
+    }
+  </script>
+
+</body>
+</html>
