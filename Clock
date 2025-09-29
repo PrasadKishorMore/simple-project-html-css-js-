@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digital Clock</title>
+  <style>
+    body {
+      background-color: #222;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      padding-top: 100px;
+    }
+    #clock {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #555;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="clock">--:--:--</div>
+  <button onclick="toggleFormat()">Switch to 24-Hour</button>
+
+  <script>
+    let is24Hour = false;
+
+    function updateClock() {
+      let now = new Date();
+      let h = now.getHours();
+      let m = now.getMinutes();
+      let s = now.getSeconds();
+      let session = "";
+
+      if (!is24Hour) {
+        session = h >= 12 ? "PM" : "AM";
+        h = h % 12;
+        h = h ? h : 12;
+      }
+
+      let time = (h < 10 ? "0" + h : h) + ":" +
+                 (m < 10 ? "0" + m : m) + ":" +
+                 (s < 10 ? "0" + s : s);
+
+      document.getElementById("clock").innerText = time + (is24Hour ? "" : " " + session);
+    }
+
+    function toggleFormat() {
+      is24Hour = !is24Hour;
+      document.querySelector("button").innerText = is24Hour ? "Switch to 12-Hour" : "Switch to 24-Hour";
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
