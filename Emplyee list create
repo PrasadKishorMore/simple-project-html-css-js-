@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Management</title>
+  <style>
+    body { font-family: Arial; text-align: center; }
+    table { border-collapse: collapse; width: 80%; margin: 20px auto; }
+    th, td { border: 1px solid black; padding: 8px; }
+    th { background: lightgray; }
+  </style>
+</head>
+<body>
+  <h2>Employee Management System</h2>
+
+  <input id="name" placeholder="Name">
+  <input id="position" placeholder="Position">
+  <input id="level" placeholder="Level">
+  <button onclick="addEmployee()">Add</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Level</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="empTable"></tbody>
+  </table>
+
+  <script>
+    function addEmployee() {
+      let name = document.getElementById("name").value;
+      let pos = document.getElementById("position").value;
+      let lvl = document.getElementById("level").value;
+
+      if (name=="" || pos=="" || lvl=="") return;
+
+      let table = document.getElementById("empTable");
+      let row = table.insertRow();
+
+      row.insertCell(0).innerText = name;
+      row.insertCell(1).innerText = pos;
+      row.insertCell(2).innerText = lvl;
+
+      let delBtn = document.createElement("button");
+      delBtn.innerText = "Delete";
+      delBtn.onclick = function() { row.remove(); };
+      row.insertCell(3).appendChild(delBtn);
+
+      document.getElementById("name").value = "";
+      document.getElementById("position").value = "";
+      document.getElementById("level").value = "";
+    }
+  </script>
+</body>
+</html>
