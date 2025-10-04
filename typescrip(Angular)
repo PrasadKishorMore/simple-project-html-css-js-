@@ -1,0 +1,71 @@
+import { style } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
+import { Component, VERSION } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent {
+  constructor(private http: HttpClient) {}
+  name: string = '';
+  red: string = 'red';
+  blue: string = 'blue';
+  rating: number = 10;
+
+  onCheck(name: string, age: string, date: string) {
+    console.log('Name:', name);
+    console.log('Age:', age);
+    console.log('Date:', date);
+  }
+
+  course: string[] = ['java', 'Angular', 'spring', 'sql', 'dsa'];
+
+  fetchData() {
+    this.http
+      .get('https://jsonplaceholder.typicode.com/posts/1')
+      .subscribe((data) => {
+        console.log('Data:', data);
+      });
+  }
+
+
+  createPost() {
+    const newPost = {
+      title: 'My New Post',
+      body: 'This is the post body.',
+      userId: 1
+    };
+  
+    this.http.post('https://jsonplaceholder.typicode.com/posts', newPost)
+      .subscribe(response => {
+        console.log('Post created:', response);
+      });
+  }
+
+
+  updatePost() {
+    const updatedPost = {
+      id: 1,
+      title: 'Updated Title',
+      body: 'Updated content',
+      userId: 1
+    };
+  
+    this.http.put('https://jsonplaceholder.typicode.com/posts/1', updatedPost)
+      .subscribe(response => {
+        console.log('Post updated:', response);
+      });
+  }
+  
+
+  deletePost() {
+    this.http.delete('https://jsonplaceholder.typicode.com/posts/1')
+      .subscribe(response => {
+        console.log('Post deleted:', response);
+      });
+  }
+  
+  
+}
