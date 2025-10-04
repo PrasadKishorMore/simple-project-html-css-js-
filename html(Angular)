@@ -1,0 +1,55 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happen :)</p>
+
+<h2>hello my name is prasad welcome to my page</h2>
+
+{{ name }}
+
+<form (submit)="onCheck(nameInput.value, ageInput.value, dateInput.value)">
+  Name:
+  <input
+    #nameInput
+    [(ngModel)]="name"
+    type="text"
+    placeholder="Enter your name"
+    name="name"
+  /><br /><br />
+
+  Age:
+  <input #ageInput type="text" placeholder="Enter your age" /><br /><br />
+
+  Date:
+  <input #dateInput type="date" /><br /><br />
+
+  <button type="submit">Submit</button>
+</form>
+
+<button [style.color]="red">delete</button>
+<button [style.color]="blue">add</button>
+
+<button>click me</button>
+
+<div *ngIf="rating < 4; else myelse">
+  <h2>condition is true</h2>
+</div>
+
+<ng-template #myelse>
+  <h2>condition is false</h2>
+</ng-template>
+
+<ul>
+  <li *ngFor="let item of course; index as i">
+    {{ i + 1 }} {{ item | uppercase }}
+  </li>
+</ul>
+
+{{ 0.025 | currency }}
+{{ 0.025 | currency : 'GBP' }}
+
+<button (click)="fetchData()">Load Posts</button>
+
+<button (click)="createPost()">create Posts</button>
+
+<button (click)="updatePost()">update Posts</button>
+
+<button (click)="deletePost()">delete Posts</button>
